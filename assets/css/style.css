@@ -244,7 +244,7 @@ Section
 */
 .sections {
     padding-top:35px;
-    padding-bottom: 45px;
+    padding-bottom: 35px;
     /*overflow: hidden;*/
 }
 .sections.footer {
@@ -1262,6 +1262,12 @@ button.btn-md:hover {
     .single_study_gallery{
         grid-auto-rows: 200px;
     }
+    .counter .main_counter_area{
+        padding: 70px 15px;
+    }
+    .counter-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 576px){
@@ -1285,6 +1291,20 @@ button.btn-md:hover {
     }
     .gallery-item--tall{
         grid-row: span 1;
+    }
+    .counter-grid{
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .main_counter_area .single_counter_item{
+        padding: 24px 16px;
+    }
+    .main_counter_area .single_counter h2{
+        font-size: 2.2rem;
+    }
+    .main_counter_area .single_counter h4{
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
     }
 }
 
@@ -1574,9 +1594,23 @@ button.btn-md:hover {
     .career-hero__content h1 {
         font-size: 3rem;
     }
+    .career-hero__content p {
+        max-width: 100%;
+    }
     .career-job-grid,
     .career-benefits__grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .career-hero__content {
+        padding: 80px 15px;
+    }
+    .career-section__header,
+    .career-benefits__header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
@@ -1585,22 +1619,30 @@ button.btn-md:hover {
         min-height: 500px;
     }
     .career-hero__content {
-        padding: 70px 0;
+        padding: 70px 15px;
     }
     .career-hero__content h1 {
         font-size: 2.3rem;
+        line-height: 1.2;
+    }
+    .career-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .career-hero__btn {
+        width: 100%;
+        text-align: center;
     }
     .career-section,
     .career-benefits {
         padding: 70px 0;
     }
-    .career-section__header,
-    .career-benefits__header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
     .career-job-card {
         padding: 22px;
+    }
+    .career-job-card__top {
+        flex-wrap: wrap;
+        gap: 8px;
     }
 }
 
@@ -3127,7 +3169,7 @@ li .single_team_text p{
 
 @media (max-width: 768px) {
     .footer-99382 {
-        padding-bottom: 18px;
+        padding-bottom: 5px;
     }
     .footer-99382__top {
         text-align: center;
