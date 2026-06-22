@@ -118,11 +118,19 @@ jQuery(document).ready(function ($) {
 
 
 // dropdown menu
-    $('.dropdown-menu').click(function (e) {
-        e.stopPropagation();
-    });
+$('.dropdown-menu').click(function (e) {
+    e.stopPropagation();
+});
 
-    //End
+// Header/Footer load
+$("#header-placeholder").load("header.html", function() {
+    var path = window.location.pathname.split("/").pop();
+    if(path == "") path = "index.html";
+    $('.navbar-nav a[href="'+path+'"]').parent().addClass('active');
+});
+$("#footer-placeholder").load("footer.html");
+
+//End
 
 });
 
