@@ -27,6 +27,27 @@
 
     <!--Theme Responsive css-->
     <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <style>
+        .form-message {
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .form-message.loading {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse">
@@ -61,10 +82,10 @@
                     <div class="contact-panel__content">
                         <span class="contact-panel__eyebrow">Contact us</span>
                         <h2>Let's build something amazing together</h2>
-                        <p>
+                        <!-- <p>
                             Have a question about our services or want to discuss your next project?
                             Our team is ready to help and respond as soon as possible.
-                        </p>
+                        </p> -->
 
                         <div class="contact-card contact-card--address">
                             <div class="contact-card__icon">
@@ -72,7 +93,7 @@
                             </div>
                             <div>
                                 <h3>Visit our office</h3>
-                                <p>House #13, Street Road, Sydney 2310, Australia</p>
+                                <p>Nangal jat , Palwal , Haryana , India</p>
                             </div>
                         </div>
 
@@ -82,7 +103,7 @@
                             </div>
                             <div>
                                 <h3>Call us</h3>
-                                <p>+880 168 109 1425<br>+0216809142</p>
+                                <p>+91 90531 93219<br>+91 60051 74697</p>
                             </div>
                         </div>
 
@@ -92,7 +113,7 @@
                             </div>
                             <div>
                                 <h3>Email us</h3>
-                                <p>contactus@email.com</p>
+                                <p>pavepulsecivilofficial@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -127,6 +148,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-lg contact-form__submit">Send Message</button>
+                            <div id="form-message" class="form-message" style="display: none; margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: 500; text-align: center;"></div>
                         </form>
                     </div>
                 </div>
@@ -160,6 +182,86 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="../assets/js/plugins.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#formid').on('submit', function(e) {
+                e.preventDefault();
+
+                var $form = $(this);
+                var name = $('#name').val().trim();
+                var email = $('#email').val().trim();
+                var subject = $('#subject').val().trim();
+
+                var $submitBtn = $('.contact-form__submit');
+                var $statusDiv = $('#form-message');
+
+                if (!name || !email || !subject) {
+                    $statusDiv.removeClass('success loading')
+                              .addClass('error')
+                              .text('Please complete the required fields before sending.')
+                              .fadeIn();
+                    return;
+                }
+
+                $submitBtn.prop('disabled', true).text('Sending...');
+                $statusDiv.removeClass('success error')
+                          .addClass('loading')
+                          .text('Sending your message... Please wait.')
+                          .fadeIn();
+
+                var formData = new FormData(this);
+                formData.set('_subject', 'Pave Pulse Civil Contact: ' + subject);
+                formData.set('_captcha', 'false');
+                formData.set('_template', 'table');
+                formData.set('_replyto', email);
+                formData.set('_cc', 'mohitrawat3219@gmail.com');
+                formData.set('_next', window.location.href + '?sent=1');
+
+                fetch('https://formsubmit.co/ajax/pavepulsecivilofficial@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Request failed with status ' + response.status);
+                    }
+
+                    return response.text().then(function(text) {
+                        if (!text) {
+                            return {};
+                        }
+
+                        try {
+                            return JSON.parse(text);
+                        } catch (err) {
+                            return { raw: text };
+                        }
+                    });
+                })
+                .then(function() {
+                    $submitBtn.prop('disabled', false).text('Send Message');
+                    $statusDiv.removeClass('loading')
+                              .addClass('success')
+                              .text('Thank you! Your message has been sent successfully.');
+                    $form[0].reset();
+
+                    setTimeout(function() {
+                        $statusDiv.fadeOut();
+                    }, 5000);
+                })
+                .catch(function(err) {
+                    $submitBtn.prop('disabled', false).text('Send Message');
+                    $statusDiv.removeClass('loading')
+                              .addClass('error')
+                              .text('Failed to send email. Please try again later.');
+                    console.error('Mail send error:', err);
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
