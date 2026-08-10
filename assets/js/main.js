@@ -86,6 +86,11 @@ jQuery(document).ready(function ($) {
         } else {
             jQuery('.navbar-fixed-top').removeClass('menu-scroll');
         }
+
+        // close mobile navbar when page scrolls
+        if ($('.navbar-toggle').is(':visible') && $('.navbar-collapse').hasClass('in')) {
+            $('.navbar-collapse').collapse('hide');
+        }
     });
 
 // scroll Up

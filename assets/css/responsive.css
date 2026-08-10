@@ -131,12 +131,143 @@ Author URI: http://www.bootstrapthemes.co
     .collapsing {
         overflow: hidden!important;
     }
+
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95);
+        padding: 10px 0;
+    }
+    .navbar-collapse .navbar-nav>li>a {
+        color: #fff !important;
+        padding: 10px 15px;
+    }
+    .navbar-collapse .navbar-nav>li>a:hover,
+    .navbar-collapse .navbar-nav>li>a:focus {
+        color: rgb(253, 102, 1) !important;
+    }
+    .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
 }
 
 /* Landscape phones and portrait tablets */
 @media  (max-width: 768px) {
     html {
         font-size: 80%;
+    }
+    .navbar-collapse {
+        /* width: calc(100% - 24px); */
+        width:110%;
+        max-width: 110%;
+        margin: 0 auto;
+        background: rgba(15, 22, 40, 0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        padding: 12px 0;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 22px 40px rgba(0, 0, 0, 0.26);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        transform: translateY(-12px);
+        opacity: 0;
+        transition: transform 0.35s ease, opacity 0.35s ease, background 0.35s ease;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .navbar-collapse.collapse.in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .navbar-collapse .navbar-nav {
+        margin: 0;
+        padding: 0 8px;
+    }
+    .navbar-collapse .navbar-nav>li {
+        width: 100%;
+    }
+    .navbar-collapse .navbar-nav>li>a {
+        color: #f7f7f7 !important;
+        padding: 14px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+    .navbar-collapse .navbar-nav>li>a:hover,
+    .navbar-collapse .navbar-nav>li>a:focus {
+        color: #ff9f34 !important;
+        background: rgba(255, 255, 255, 0.08);
+    }
+    .navbar-toggle {
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 12px;
+        /* background: rgba(255, 255, 255, 0.08); */
+        background: rgb(255, 255, 255);
+        padding: 8px 10px;
+        transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .navbar-toggle:hover {
+        background: rgba(255, 255, 255, 0.18);
+        border-color: rgba(255, 255, 255, 0.9);
+    }
+    .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+    .navbar-header a img {
+        max-width: 42%;
+    }
+    .counter .main_counter_area {
+        padding: 50px 12px;
+    }
+    .counter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+    .main_counter_area .single_counter_item {
+        padding: 26px 16px;
+    }
+    .main_counter_area .single_counter_item i {
+        width: 58px;
+        height: 58px;
+        line-height: 58px;
+        font-size: 1.45rem;
+        margin-bottom: 16px;
+    }
+    .main_counter_area .single_counter h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    .main_counter_area .single_counter h4 {
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+    }
+    .main_counter_area .single_counter_item h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        margin: 10px 0;
+        flex-wrap: wrap;
+    }
+    .counter-grid .single_counter {
+        width: 100%;
+    }
+    @media (max-width: 576px) {
+        .counter .main_counter_area {
+            padding: 40px 12px;
+        }
+        .counter-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .main_counter_area .single_counter_item {
+            padding: 24px 14px;
+        }
+        .main_counter_area .single_counter h2 {
+            font-size: 1.9rem;
+        }
+        .main_counter_area .single_counter h4 {
+            font-size: 0.78rem;
+        }
     }
     .main_feature .single_feature {
         margin-bottom: 40px;
