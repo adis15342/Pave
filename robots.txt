@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /yogesh/
+
+Sitemap: https://pavepulse.in/sitemap.xml
